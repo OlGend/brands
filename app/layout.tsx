@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 
+
+import Sidebar from "@/components/Sidebar/Sidebar";
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -14,9 +17,16 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
+
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className="h-screen flex flex-row justify-start">
+      <Sidebar />
+      <div className="bg-primary h-screen flex-1 p-4 text-white">
+          {children}
+      </div>
+    </body>
     </html>
   );
 }
