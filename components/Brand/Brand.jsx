@@ -135,7 +135,7 @@ const Brand = () => {
         />
 
         <label htmlFor="WithdrawalMethods" className="block">
-          Withdrawal Methods:
+          Game Providers:
         </label>
         <textarea
           id="WithdrawalMethods"
