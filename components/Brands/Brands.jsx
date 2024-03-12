@@ -9,7 +9,7 @@ const Brands = () => {
   const { setSelectedBrand: setGlobalSelectedBrand } = useBrand();
   const [filteredBrands, setFilteredBrands] = useState([]);
   const [filter, setFilter] = useState({
-    Tech: "",
+    categories: "",
     CasinoBrand: "",
     GEO: "",
     CurrentStatus: "",
@@ -38,10 +38,10 @@ const Brands = () => {
   };
 
   const handleSearch = () => {
-    const { Tech, CasinoBrand, GEO, CurrentStatus, id_brand } = filter;
+    const { categories, CasinoBrand, GEO, CurrentStatus, id_brand } = filter;
     const result = brands.filter(
       (brand) =>
-        (Tech ? brand.Tech.includes(Tech) : true) &&
+        (categories ? brand.categories.includes(categories) : true) &&
         (CasinoBrand ? brand.CasinoBrand.includes(CasinoBrand) : true) &&
         (GEO ? brand.GEO.includes(GEO) : true) &&
         (CurrentStatus ? brand.CurrentStatus.includes(CurrentStatus) : true) &&
@@ -51,7 +51,7 @@ const Brands = () => {
 
     // Сброс фильтров после поиска
     setFilter({
-      Tech: "",
+      categories: "",
       CasinoBrand: "",
       GEO: "",
       CurrentStatus: "",
@@ -73,9 +73,9 @@ const Brands = () => {
         <p className="py-2 px-1 w-12 flex justify-center items-center">#</p>
         <input
           type="text"
-          name="Tech"
-          placeholder="Tech"
-          value={filter.Tech}
+          name="categories"
+          placeholder="Categories"
+          value={filter.categories}
           onChange={handleFilterChange}
           className="py-2 px-3 w-64"
         />
@@ -130,7 +130,7 @@ const Brands = () => {
                 {index}
               </p>
               <p className="py-2 px-1 w-64 flex justify-center items-center">
-                {brand.Tech}
+                {brand.categories}
               </p>
               <p className="py-2 px-1 w-32 flex justify-center items-center">
                 {brand.CasinoBrand}
