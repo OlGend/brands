@@ -3,7 +3,7 @@ import classNames from "classnames";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React, { useState, useMemo } from "react";
-import useFetchUrl from "@/components/getUrl";
+// import useFetchUrl from "@/components/getUrl";
 import {
   CaretLeft,
   Table,
@@ -23,7 +23,7 @@ const menuItems = [
 ];
 
 const Sidebar = () => {
-  useFetchUrl();
+  // useFetchUrl();
   const [toggleCollapse, setToggleCollapse] = useState(false);
   const [isCollapsible, setIsCollapsible] = useState(false);
 
