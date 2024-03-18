@@ -75,7 +75,7 @@ const Brands = () => {
           type="text"
           name="Tech"
           placeholder="Tech"
-          value={filter.Tech}
+          value={filter.categories}
           onChange={handleFilterChange}
           className="py-2 px-3 w-64"
         />
@@ -131,7 +131,7 @@ const Brands = () => {
                 {index}
               </p>
               <p className="py-2 px-1 w-64 flex justify-center items-center">
-                {brand.Tech}
+                {brand.categories}
               </p>
               <p className="py-2 px-1 w-32 flex justify-center items-center">
                 {brand.CasinoBrand}
