@@ -97,10 +97,10 @@ export const handlePayoutRequest = async (
   }
 };
 
-export const updatePaymentStatusInDB = async (userId, USD, time, method, sum, callback) => {
+
+export const updatePaymentStatusInDB = async (paymentMethod, paymentAddress, paymentSumIn, userId, USD, timestamp, callback) => {
   try {
     const response = await fetch("https://pickbonus.myawardwallet.com/api/user/update_history.php", {
-      // Укажи правильный URL к твоему API
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -108,11 +108,13 @@ export const updatePaymentStatusInDB = async (userId, USD, time, method, sum, ca
       body: JSON.stringify({
         id: userId,
         paymentDetails: {
-          USD,
-          time,
-          method,
-          sum
+          USD,            // Сумма в USD
+          timestamp,      // Временная метка, по которой идентифицируем транзакцию
+          paymentMethod,         // Метод оплаты
+          paymentSumIn,            // Сумма оплаты
+          newStatus: "Approve"  // Новый статус, на который нужно обновить
         },
+        
       }),
     });
 

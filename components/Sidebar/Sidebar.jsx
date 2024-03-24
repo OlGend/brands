@@ -17,9 +17,10 @@ import {
 const menuItems = [
   { id: 1, label: "Dashboard", icon: Table, link: "/" },
   { id: 2, label: "Brands", icon: Table, link: "/brands" },
-  { id: 3, label: "Messages", icon: ChatTeardropText, link: "/messages" },
-  { id: 4, label: "Withdrawal", icon: Bank, link: "/withdrawal" },
-  { id: 5, label: "FAQ", icon: Question, link: "/faq" },
+  { id: 3, label: "Brands Partners", icon: Table, link: "/brands2" },
+  { id: 4, label: "Messages", icon: ChatTeardropText, link: "/messages" },
+  { id: 5, label: "Withdrawal", icon: Bank, link: "/withdrawal" },
+  { id: 6, label: "FAQ", icon: Question, link: "/faq" },
 ];
 
 const Sidebar = () => {

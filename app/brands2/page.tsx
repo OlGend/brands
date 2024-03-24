@@ -1,9 +1,9 @@
 import Image from "next/image";
-import Brands from "@/components/Brands/Brands";
-import Brand from "@/components/Brand/Brand";
-import { BrandProvider } from "@/components/Brands/BrandContext";
+import Brands from "@/components/Brands2/Brands";
+import Brand from "@/components/Brand2/Brand";
+import { BrandProvider } from "@/components/Brands2/BrandContext";
 
-export default function AllBrands() {
+export default function AllBrands2() {
   return (
     <main className="main">
       <div className="bg-secondary flex-1 p-4 border border-dashed text-gray-800">
