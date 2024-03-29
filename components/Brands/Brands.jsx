@@ -9,7 +9,7 @@ const Brands = () => {
   const { setSelectedBrand: setGlobalSelectedBrand } = useBrand();
   const [filteredBrands, setFilteredBrands] = useState([]);
   const [filter, setFilter] = useState({
-    Tech: "",
+    categories: "",
     CasinoBrand: "",
     GEO: "",
     CurrentStatus: "",
@@ -41,23 +41,15 @@ const Brands = () => {
     const { categories, CasinoBrand, GEO, CurrentStatus, id_brand } = filter;
     const result = brands.filter(
       (brand) =>
-        (categories ? brand.categories.includes(categories) : true) &&
-        (CasinoBrand ? brand.CasinoBrand.includes(CasinoBrand) : true) &&
-        (GEO ? brand.GEO.includes(GEO) : true) &&
-        (CurrentStatus ? brand.CurrentStatus.includes(CurrentStatus) : true) &&
-        (id_brand ? brand.id_brand.includes(id_brand) : true)
+        (categories ? brand.categories && brand.categories.toLowerCase().includes(categories.toLowerCase()) : true) &&
+        (CasinoBrand ? brand.CasinoBrand && brand.CasinoBrand.toLowerCase().includes(CasinoBrand.toLowerCase()) : true) &&
+        (GEO ? brand.GEO && brand.GEO.toLowerCase().includes(GEO.toLowerCase()) : true) &&
+        (CurrentStatus ? brand.CurrentStatus && brand.CurrentStatus.toLowerCase().includes(CurrentStatus.toLowerCase()) : true) &&
+        (id_brand ? brand.id_brand && brand.id_brand.includes(id_brand) : true)
     );
     setFilteredBrands(result);
-
-    // Сброс фильтров после поиска
-    setFilter({
-      categories: "",
-      CasinoBrand: "",
-      GEO: "",
-      CurrentStatus: "",
-      id_brand: "",
-    });
   };
+  
 
   const handleBrandClick = (brand) => {
     setSelectedBrand(brand); // Обновление локального состояния выбранного бренда
@@ -86,7 +78,6 @@ const Brands = () => {
           value={filter.CasinoBrand}
           onChange={handleFilterChange}
           className="py-2 px-1 w-32"
-          
         />
         <input
           type="text"
