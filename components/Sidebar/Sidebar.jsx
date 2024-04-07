@@ -11,6 +11,7 @@ import {
   ChatTeardropText,
   Question,
   Bank,
+  ShoppingBag,
   Flag,
   GameController,
 } from "phosphor-react";
@@ -18,13 +19,15 @@ const menuItems = [
   { id: 1, label: "Dashboard", icon: Table, link: "/" },
   { id: 2, label: "Brands", icon: Table, link: "/brands" },
   { id: 3, label: "Brands Partners", icon: Table, link: "/brands2" },
-  { id: 4, label: "Messages", icon: ChatTeardropText, link: "/messages" },
-  { id: 5, label: "Withdrawal", icon: Bank, link: "/withdrawal" },
-  { id: 6, label: "FAQ", icon: Question, link: "/faq" },
+  { id: 8, label: "Brands 1043", icon: Table, link: "/brands3" },
+  { id: 9, label: "Brands 1044", icon: Table, link: "/brands4" },
+  { id: 4, label: "Purchase Goods", icon: ShoppingBag, link: "/purchased-goods" },
+  { id: 6, label: "Withdrawal", icon: Bank, link: "/withdrawal" },
+  { id: 5, label: "Messages", icon: ChatTeardropText, link: "/messages" },
+  { id: 7, label: "FAQ", icon: Question, link: "/faq" },
 ];
 
 const Sidebar = () => {
-  // useFetchUrl();
   const [toggleCollapse, setToggleCollapse] = useState(false);
   const [isCollapsible, setIsCollapsible] = useState(false);
 

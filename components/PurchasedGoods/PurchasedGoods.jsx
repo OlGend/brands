@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { getUsers } from "@/components/getUsers";
 import { updatePaymentStatusInDB } from "@/components/pushPayment";
 
-const Notification = () => {
+const PurchasedGoods = () => {
   const [users, setUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -17,11 +17,26 @@ const Notification = () => {
         // Трансформируем пользователей, оставляя только транзакции со статусом "Waiting"
         const transformedUsers = usersData.records.map((user) => ({
           ...user,
-          // Парсим JSON и фильтруем транзакции
-          status_payment: JSON.parse(user.status_payment).filter(
-            (payment) => payment.status === "Waiting"
+          status_payment: tryParseJSON(user.status_payment).filter(
+            (payment) => payment.status === "Waiting" && 
+            !(payment.paymentMethod === "USDTTRC20" || payment.paymentMethod === "LTC")
           ),
         }));
+        
+        function tryParseJSON(jsonString) {
+          try {
+            var o = JSON.parse(jsonString);
+        
+            // Если o - объект и не null
+            if (o && typeof o === "object") {
+              return o;
+            }
+          }
+          catch (e) { }
+        
+          // Если разбор не удался, возвращаем пустой массив
+          return [];
+        }
         setUsers(transformedUsers);
       } catch (err) {
         setError(err.message || "Произошла ошибка при загрузке данных.");
@@ -83,10 +98,10 @@ const Notification = () => {
           Time creating
         </p>
         <p className="py-2 px-1 w-24 flex justify-center items-center">
-          Currency
+          Card name
         </p>
-        <p className="py-2 px-1 w-24 flex justify-center items-center">
-          Sum in currency
+        <p className="py-2 px-1 w-48 flex justify-center items-center">
+          email
         </p>
         <p className="py-2 px-1 w-24 flex justify-center items-center">
           Sum in USD
@@ -111,8 +126,8 @@ const Notification = () => {
             <p className="py-2 px-1 w-24 flex justify-center items-center">
               {payment.paymentMethod}
             </p>
-            <p className="py-2 px-1 w-24 flex justify-center items-center">
-              {payment.paymentSumIn}
+            <p className="py-2 px-1 w-48 flex justify-center items-center">
+              {payment.paymentAddress}
             </p>
             <p className="py-2 px-1 w-24 flex justify-center items-center">
               {payment.USD}
@@ -139,24 +154,6 @@ const Notification = () => {
   );
 };
 
-export default Notification;
+export default PurchasedGoods;
 
 
-[
-  {
-      "USD": "1",
-      "status": "Approve",
-      "timestamp": "2024-03-18T15:31:13.490Z",
-      "paymentSumIn": "0.995708",
-      "paymentMethod": "USDTTRC20",
-      "paymentAddress": "TPAi2YkH4CvP92uADDFa5rgit5XZdV7NQ5"
-  },
-  {
-      "USD": "1",
-      "status": "Waiting",
-      "timestamp": "2024-03-18T15:51:37.278Z",
-      "paymentSumIn": "0.996846",
-      "paymentMethod": "USDTTRC20",
-      "paymentAddress": "TPAi2YkH4CvP92uADDFa5rgit5XZdV7NQ5"
-  }
-]

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Notification from "@/components/Messages/Messages";
+// import Notification from "@/components/Messages/Messages";
 
 export default function Messages() {
   return (
@@ -8,7 +8,7 @@ export default function Messages() {
         <div className="flex">
           <div className="basis-6/12">
             <h2>Notifications</h2>
-            <Notification />
+            {/* <Notification /> */}
           </div>
           <div className="basis-6/12 brand-content"></div>
         </div>

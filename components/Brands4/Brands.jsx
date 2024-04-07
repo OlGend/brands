@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { getBrands } from "@/components/getBrands2";
-import { useBrand } from "@/components/Brands2/BrandContext";
+import { getBrands } from "@/components/getBrands4";
+import { useBrand } from "@/components/Brands4/BrandContext";
 import Loader from "@/components/Loader/Loader";
 
 const Brands = () => {
@@ -90,7 +90,7 @@ const Brands = () => {
     setLoading(true);
     try {
       const response = await fetch(
-        "https://pickbonus.myawardwallet.com/api/brandsNew2/rebrand.php",
+        "https://pickbonus.myawardwallet.com/api/brandsNew4/rebrand.php",
         {
           method: "POST",
         }
