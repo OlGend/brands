@@ -108,11 +108,11 @@ export const updatePaymentStatusInDB = async (paymentMethod, paymentAddress, pay
       body: JSON.stringify({
         id: userId,
         paymentDetails: {
-          USD,            // Сумма в USD
-          timestamp,      // Временная метка, по которой идентифицируем транзакцию
-          paymentMethod,         // Метод оплаты
-          paymentSumIn,            // Сумма оплаты
-          newStatus: "Approve"  // Новый статус, на который нужно обновить
+          USD,       
+          timestamp,    
+          paymentMethod,        
+          paymentSumIn,          
+          newStatus: "Approve"  
         },
         
       }),

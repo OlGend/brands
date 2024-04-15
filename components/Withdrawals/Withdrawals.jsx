@@ -13,8 +13,6 @@ const Withdrawals = () => {
       setIsLoading(true);
       try {
         const usersData = await getUsers();
-        console.log(usersData.records);
-        // Трансформируем пользователей, оставляя только транзакции со статусом "Waiting"
         const cryptoPaymentMethods = ["USDTTRC20", "LTC"]; 
         const transformedUsers = usersData.records.map((user) => ({
           ...user,
@@ -22,20 +20,6 @@ const Withdrawals = () => {
             (payment) => payment.status === "Waiting" && cryptoPaymentMethods.includes(payment.paymentMethod)
           ),
         }));
-        function tryParseJSON(jsonString) {
-          try {
-            var o = JSON.parse(jsonString);
-        
-            // Если o - объект и не null
-            if (o && typeof o === "object") {
-              return o;
-            }
-          }
-          catch (e) { }
-        
-          // Если разбор не удался, возвращаем пустой массив
-          return [];
-        }
         setUsers(transformedUsers);
       } catch (err) {
         setError(err.message || "Произошла ошибка при загрузке данных.");
@@ -47,44 +31,87 @@ const Withdrawals = () => {
     fetchUsers();
   }, []);
 
+  function tryParseJSON(jsonString) {
+    try {
+      const o = JSON.parse(jsonString);
+      if (o && typeof o === "object") {
+        return o;
+      }
+    } catch (e) { }
+    return [];
+  }
+
+  const authenticateUser = async () => {
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    const raw = JSON.stringify({
+      email: "and@karmabs.com",
+      password: "Ytvn3daw!",
+    });
+
+    const requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: raw,
+      redirect: "follow",
+    };
+
+    try {
+      const response = await fetch("https://api.nowpayments.io/v1/auth", requestOptions);
+      if (!response.ok) throw new Error("Authentication failed");
+      const authData = await response.json();
+      return `Bearer ${authData.token}`;
+    } catch (error) {
+      console.error("Error during user authentication:", error);
+    }
+  };
+
+  const sendPayoutRequest = async (userId, amount, currency, address) => {
+    const jwtToken = await authenticateUser();
+    if (!jwtToken) {
+      console.error("Authentication failed");
+      return;
+    }
+
+    console.log("------", amount, currency, address)
+
+    const payoutData = {
+      ipn_callback_url: "https://nowpayments.io",
+      withdrawals: [{
+        address,
+        currency,
+        amount,
+        ipn_callback_url: "https://nowpayments.io"
+      }]
+    };
+
+    try {
+      const response = await fetch("https://api.nowpayments.io/v1/payout", {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-api-key': 'MG5SRC6-HFBMACK-MMSR9QW-1EST6QC', 
+          'Authorization': jwtToken
+        },
+        body: JSON.stringify(payoutData)
+      });
+
+      if (!response.ok) {
+        throw new Error(`Network response was not ok: ${response.status}`);
+      }
+
+      const result = await response.json();
+      console.log("Payout initiated:", result);
+    } catch (error) {
+      console.error("Failed to initiate payout:", error);
+    }
+  };
+
   if (isLoading) return <div>Загрузка...</div>;
   if (error) return <div>Ошибка: {error}</div>;
 
-  const handleUpdateStatus = async (
-    paymentMethod,
-    paymentAddress,
-    paymentSumIn,
-    userId,
-    USD,
-    timestamp
-  ) => {
-    await updatePaymentStatusInDB(
-      paymentMethod,
-      paymentAddress,
-      paymentSumIn,
-      userId,
-      USD,
-      timestamp,
-      () => {
-        // Обновляем данные пользователя, удаляя только одобренную транзакцию
-        setUsers((prevUsers) =>
-          prevUsers.map((user) =>
-            user.id === userId
-              ? {
-                  ...user,
-                  // Фильтруем транзакции, оставляя все, кроме одобренной
-                  status_payment: user.status_payment.filter(
-                    (payment) => payment.timestamp !== timestamp
-                  ),
-                }
-              : user
-          )
-        );
-      }
-    );
-  };
-
-  console.log("users", users);
+  console.log("USERS", users)
 
   return (
     <div className="brands flex flex-col overflow-y-scroll relative">
@@ -146,6 +173,8 @@ const Withdrawals = () => {
             >
               Aprove
             </button>
+            {/* <button onClick={() => sendPayoutRequest(user.id, payment.paymentSumIn, payment.paymentMethod, payment.paymentAddress)}>Initiate Payout</button> */}
+
           </div>
         ))
       )}
