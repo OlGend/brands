@@ -29,7 +29,7 @@ const Brand = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch("https://pickbonus.myawardwallet.com/api/brandsNew/update_brands.php", {
+      const response = await fetch("https://bonusnumber1.com/api/brandsNew/update_brands.php", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -100,7 +100,7 @@ export const handlePayoutRequest = async (
 
 export const updatePaymentStatusInDB = async (paymentMethod, paymentAddress, paymentSumIn, userId, USD, timestamp, callback) => {
   try {
-    const response = await fetch("https://pickbonus.myawardwallet.com/api/user/update_history.php", {
+    const response = await fetch("https://bonusnumber1.com/api/user/update_history.php", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

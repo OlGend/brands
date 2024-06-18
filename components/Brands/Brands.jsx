@@ -90,7 +90,7 @@ const Brands = () => {
     setLoading(true);
     try {
       const response = await fetch(
-        "https://pickbonus.myawardwallet.com/api/brandsNew/rebrand.php",
+        "https://bonusnumber1.com/api/brandsNew/rebrand.php",
         {
           method: "POST",
         }

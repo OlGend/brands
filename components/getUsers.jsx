@@ -3,7 +3,7 @@ export const getUsers = async (y) => {
 
 
   try {
-    const res = await fetch("https://pickbonus.myawardwallet.com/api/user/get_user_status.php");
+    const res = await fetch("https://bonusnumber1.com/api/user/get_user_status.php");
 
     if (res.ok) {
       const responseData = await res.json();

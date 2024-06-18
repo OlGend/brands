@@ -1,10 +1,10 @@
 // Это больше не компонент React, а асинхронная функция для получения данных брендов.
 export const getBrands = async (y) => {
-  const apiOld = "https://pickbonus.myawardwallet.com/api/brandsNew2/read_sheet.php";
-  const apiNew = "https://pickbonus.myawardwallet.com/api/brandsNew2/read_sheet.php";
+  const apiOld = "https://bonusnumber1.com/api/brandsNew2/read_sheet.php";
+  const apiNew = "https://bonusnumber1.com/api/brandsNew2/read_sheet.php";
 
   try {
-    const res = await fetch("https://pickbonus.myawardwallet.com/api/brandsNew4/read_sheet.php");
+    const res = await fetch("https://bonusnumber1.com/api/brandsNew4/read_sheet.php");
 
     if (res.ok) {
       const responseData = await res.json();

@@ -18,22 +18,25 @@ const PurchasedGoods = () => {
         const transformedUsers = usersData.records.map((user) => ({
           ...user,
           status_payment: tryParseJSON(user.status_payment).filter(
-            (payment) => payment.status === "Waiting" && 
-            !(payment.paymentMethod === "USDTTRC20" || payment.paymentMethod === "LTC")
+            (payment) =>
+              payment.status === "Waiting" &&
+              !(
+                payment.paymentMethod === "USDTTRC20" ||
+                payment.paymentMethod === "LTC"
+              )
           ),
         }));
-        
+
         function tryParseJSON(jsonString) {
           try {
             var o = JSON.parse(jsonString);
-        
+
             // Если o - объект и не null
             if (o && typeof o === "object") {
               return o;
             }
-          }
-          catch (e) { }
-        
+          } catch (e) {}
+
           // Если разбор не удался, возвращаем пустой массив
           return [];
         }
@@ -100,9 +103,7 @@ const PurchasedGoods = () => {
         <p className="py-2 px-1 w-24 flex justify-center items-center">
           Card name
         </p>
-        <p className="py-2 px-1 w-48 flex justify-center items-center">
-          email
-        </p>
+        <p className="py-2 px-1 w-48 flex justify-center items-center">email</p>
         <p className="py-2 px-1 w-24 flex justify-center items-center">
           Sum in USD
         </p>
@@ -155,5 +156,4 @@ const PurchasedGoods = () => {
 };
 
 export default PurchasedGoods;
-
 
