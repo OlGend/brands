@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { useBrand } from "@/components/Brands4/BrandContext";
+import { useBrand } from "@/components/Brands5/BrandContext";
 import Image from "next/image";
 
 const Brand = () => {

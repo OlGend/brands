@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { getBrands } from "@/components/getBrands4";
-import { useBrand } from "@/components/Brands4/BrandContext";
+import { getBrands } from "@/components/getBrands5";
+import { useBrand } from "@/components/Brands5/BrandContext";
 import Loader from "@/components/Loader/Loader";
 
 const Brands = () => {
