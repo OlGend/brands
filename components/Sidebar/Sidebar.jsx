@@ -21,6 +21,7 @@ const menuItems = [
   { id: 3, label: "Brands Partners", icon: Table, link: "/brands2" },
   { id: 8, label: "Brands 1043", icon: Table, link: "/brands3" },
   { id: 9, label: "Brands 1044", icon: Table, link: "/brands4" },
+  { id: 10, label: "Brands CLD_VIP", icon: Table, link: "/brands5" },
   { id: 4, label: "Purchase Goods", icon: ShoppingBag, link: "/purchased-goods" },
   { id: 6, label: "Withdrawal", icon: Bank, link: "/withdrawal" },
   { id: 5, label: "Messages", icon: ChatTeardropText, link: "/messages" },
