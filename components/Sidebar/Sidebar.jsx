@@ -24,6 +24,7 @@ const menuItems = [
   { id: 10, label: "Brands CLD_VIP", icon: Table, link: "/brands5" },
   { id: 4, label: "Purchase Goods", icon: ShoppingBag, link: "/purchased-goods" },
   { id: 6, label: "Withdrawal", icon: Bank, link: "/withdrawal" },
+  { id: 11, label: "Push Event", icon: Bank, link: "/push-event" },
   { id: 5, label: "Messages", icon: ChatTeardropText, link: "/messages" },
   { id: 7, label: "FAQ", icon: Question, link: "/faq" },
 ];
