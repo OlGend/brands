@@ -159,6 +159,7 @@ const Brands = () => {
                 <option value="">Current Status</option>
                 <option value="Ongoing">Ongoing</option>
                 <option value="Stop">Stop</option>
+                <option value="Hold">Hold</option>
               </select>
               <input
                 type="text"
