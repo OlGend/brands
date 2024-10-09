@@ -22,6 +22,7 @@ const menuItems = [
   { id: 8, label: "Brands 1043", icon: Table, link: "/brands3" },
   { id: 9, label: "Brands 1044", icon: Table, link: "/brands4" },
   { id: 10, label: "Brands CLD_VIP", icon: Table, link: "/brands5" },
+  { id: 12, label: "Brands 1045", icon: Table, link: "/brands6" },
   { id: 4, label: "Purchase Goods", icon: ShoppingBag, link: "/purchased-goods" },
   { id: 6, label: "Withdrawal", icon: Bank, link: "/withdrawal" },
   { id: 11, label: "Push Event", icon: Bank, link: "/push-event" },
