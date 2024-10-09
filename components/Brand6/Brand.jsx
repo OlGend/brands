@@ -28,6 +28,7 @@ const Brand = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    
     try {
       const response = await fetch("https://bonusnumber1.com/api/brandsNew6/update_brands.php", {
         method: "POST",
