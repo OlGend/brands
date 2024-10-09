@@ -29,6 +29,7 @@ const Brand = () => {
     e.preventDefault();
 
     
+
     try {
       const response = await fetch("https://bonusnumber1.com/api/brandsNew6/update_brands.php", {
         method: "POST",
