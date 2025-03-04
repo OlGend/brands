@@ -7,7 +7,7 @@ import ArticleForm from '@/components/ArticleForm';
 export default function NewArticlePage() {
   const router = useRouter();
 
-  const handleSubmit = async (data) => {
+  const handleSubmit = async (data: any) => {
     try {
       const res = await fetch('https://bonusnumber1.com/api/articles/articles.php', {
         method: 'POST',

@@ -27,7 +27,7 @@ export default function EditArticlePage() {
     if (id) fetchArticle();
   }, [id]);
 
-  const handleSubmit = async (data) => {
+  const handleSubmit = async (data: any) => {
     try {
       // Для обновления используем update_article.php
       const res = await fetch(`https://bonusnumber1.com/api/articles/update_article.php?id=${id}`, {

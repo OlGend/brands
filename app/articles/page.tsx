@@ -1,20 +1,29 @@
-// app/articles/page.jsx
+// app/articles/page.tsx
 "use client";
 
-import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
-import Link from 'next/link';
+import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
+
+interface Article {
+  id: number;
+  slug: string;
+  category: string;
+  publication_date: string;
+}
 
 export default function ArticlesPage() {
-  const [articles, setArticles] = useState([]);
+  const [articles, setArticles] = useState<Article[]>([]);
   const router = useRouter();
-  
+
   useEffect(() => {
     async function fetchArticles() {
       try {
-        const res = await fetch('https://bonusnumber1.com/api/articles/articles_list.php');
+        const res = await fetch(
+          "https://bonusnumber1.com/api/articles/articles_list.php"
+        );
         if (res.ok) {
-          const data = await res.json();
+          const data: Article[] = await res.json();
           setArticles(data);
         } else {
           console.error("Ошибка загрузки статей");
@@ -26,7 +35,7 @@ export default function ArticlesPage() {
     fetchArticles();
   }, []);
 
-  const handleEdit = (id, e) => {
+  const handleEdit = (id: number, e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
     router.push(`/articles/${id}`);
   };
@@ -35,8 +44,8 @@ export default function ArticlesPage() {
     <div className="container mx-auto p-4">
       <div className="flex justify-between items-center mb-4">
         <h1 className="text-2xl font-bold">Статьи</h1>
-        <Link href="/articles/new">
-          <p className="bg-blue-500 text-white py-2 px-4 rounded">Создать статью</p>
+        <Link href="/articles/new" className="bg-blue-500 text-white py-2 px-4 rounded">
+          Создать статью
         </Link>
       </div>
       <table className="min-w-full bg-white border">
@@ -49,9 +58,9 @@ export default function ArticlesPage() {
             <th className="py-2 border">Действия</th>
           </tr>
         </thead>
-        <tbody className='bg-gray-700'>
+        <tbody className="bg-gray-700">
           {articles.length ? (
-            articles.map(article => (
+            articles.map((article) => (
               <tr
                 key={article.id}
                 className="cursor-pointer hover:bg-gray-500"
@@ -73,7 +82,9 @@ export default function ArticlesPage() {
             ))
           ) : (
             <tr>
-              <td colSpan="5" className="text-center py-4">Нет статей</td>
+              <td colSpan={5} className="text-center py-4">
+                Нет статей
+              </td>
             </tr>
           )}
         </tbody>
